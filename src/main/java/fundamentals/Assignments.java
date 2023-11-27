@@ -4,30 +4,31 @@ import fundamentals.exception.TextTooLongException;
 import fundamentals.exception.TextTooShortException;
 
 import java.util.Arrays;
+
 public class Assignments {
 
-    public  double divideByTwo(double num) {
+    public double divideByTwo(double num) {
         if (num == 0) {
             throw new ArithmeticException("You can't divide the number zero");
         }
-        return  num / 2;
+        return num / 2;
     }
 
-    public  double divide(double x, double y) {
+    public double divide(double x, double y) {
         if (y == 0) {
             throw new ArithmeticException("You can't divide the number zero");
         }
-        return  x / y;
+        return x / y;
     }
 
-    public  int checkLength(String text) {
+    public int checkLength(String text) {
         if (text == null) {
             throw new IllegalArgumentException("text can't be null");
         }
         return text.length();
     }
 
-    public  void validateLength(String text) throws TextTooLongException, TextTooShortException {
+    public void validateLength(String text) throws TextTooLongException, TextTooShortException {
         int textLength = checkLength(text);
         if (textLength > 10) {
             throw new TextTooLongException("Text is too long");
@@ -36,7 +37,7 @@ public class Assignments {
         }
     }
 
-    public  String reverse(String text) {
+    public String reverse(String text) {
         if (text == null) {
             throw new IllegalArgumentException("text can't be null");
         }
@@ -44,7 +45,7 @@ public class Assignments {
         return reversed.reverse().toString();
     }
 
-    public  boolean checkAnagram(String text1, String text2) {
+    public boolean checkAnagram(String text1, String text2) {
         if (text1 == null || text2 == null) {
             throw new IllegalArgumentException("text can't be null");
         }
@@ -60,7 +61,7 @@ public class Assignments {
         return Arrays.equals(charArray1, charArray2);
     }
 
-    public  boolean checkPalindrome(String text1, String text2) {
+    public boolean checkPalindrome(String text1, String text2) {
         if (text1 == null || text2 == null) {
             throw new IllegalArgumentException("text can't be null");
         }
@@ -74,7 +75,7 @@ public class Assignments {
         return true;
     }
 
-    public  int factorial(int n) {
+    public int factorial(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("The number can't be negative number");
         }
@@ -85,10 +86,10 @@ public class Assignments {
         return obj;
     }
 
-    public  int fibonacci(int n) {
+    public int fibonacci(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("The number can't be negative number");
-        }else if (n <= 1) {
+        } else if (n <= 1) {
             return n;
         }
         int x1 = 0;
