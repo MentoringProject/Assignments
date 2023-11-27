@@ -1,7 +1,11 @@
 package fundamentals;
 
+import fundamentals.exception.TextTooLongException;
+import fundamentals.exception.TextTooShortException;
+
 import java.util.Arrays;
 public class Assignments {
+
     public  double divideByTwo(double num) {
         if (num == 0) {
             throw new ArithmeticException("You can't divide the number zero");
@@ -68,7 +72,6 @@ public class Assignments {
             }
         }
         return true;
-
     }
 
     public  int factorial(int n) {
@@ -80,7 +83,6 @@ public class Assignments {
             obj *= i;
         }
         return obj;
-
     }
 
     public  int fibonacci(int n) {
@@ -97,9 +99,6 @@ public class Assignments {
             x2 = temp;
         }
         return x2;
-
     }
-
-
 }
 
