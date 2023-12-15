@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 
-public class MyStackImplementation {
-    private List<Integer> stackElements;
+public class MyStack<T> {
+    private List<T> stackElements;
 
-    public MyStackImplementation() {
+    public MyStack() {
 
-        this.stackElements = new ArrayList<>();
+        this.stackElements = new ArrayList<T>();
     }
 
-    public void push(int element) {
+    public void push(T element) {
 
         stackElements.add(element);
     }
 
-    public int pop() {
+    public T pop() {
         if (stackElements.isEmpty()) {
             throw new EmptyStackException();
         }
@@ -32,7 +32,7 @@ public class MyStackImplementation {
         return stackElements.size();
     }
 
-    public int peek() {
+    public T peek() {
         if (stackElements.isEmpty()) {
             throw new EmptyStackException();
         }

@@ -1,9 +1,9 @@
-import fundamentals.MyStackImplementation;
+import fundamentals.MyStack;
 
 public class Main {
 
     public static void main(String[] args) {
-        MyStackImplementation stackImplementation = new MyStackImplementation();
+        MyStack stackImplementation = new MyStack();
 
         stackImplementation.push(2);
         stackImplementation.push(12);
