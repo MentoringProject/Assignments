@@ -12,47 +12,105 @@ public class MyLinkedList<T> {
         this.last = null;
     }
 
-    public void addFirst(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addFirst(final T data) {
+        Node<T> newNode = new Node<T>() {
+            T nodeData = data;
+            private Node<T> next;
+            private Node<T> previous;
+
+            @Override
+            public T getData() {
+                return nodeData;
+            }            @Override
+            public void setNext(Node<T> next) {
+                this.next = next;
+            }
+
+            @Override
+            public Node<T> getNext() {
+                return next;
+            }
+
+            @Override
+            public Node<T> getPrevious() {
+                return previous;
+            }            @Override
+            public void setPrevious(Node<T> previous) {
+                this.previous = previous;
+            }
+
+
+
+        };
+
         if (first == null) {
             first = newNode;
             last = newNode;
         } else {
-            newNode.next = first;
-            first.previous = newNode;
+            newNode.setNext(first);
+            first.setPrevious(newNode);
             first = newNode;
         }
     }
 
     public void addLast(T data) {
-        Node<T> newNode = new Node<>(data);
+        Node<T> newNode = new Node<T>() {
+            T nodeData = data;
+            private Node<T> next;
+            private Node<T> previous;
+
+            @Override
+            public T getData() {
+                return nodeData;
+            }            @Override
+            public void setNext(Node<T> next) {
+                this.next = next;
+            }
+
+            @Override
+            public Node<T> getNext() {
+                return next;
+            }
+
+            @Override
+            public Node<T> getPrevious() {
+                return previous;
+            }            @Override
+            public void setPrevious(Node<T> previous) {
+                this.previous = previous;
+            }
+
+
+
+        };
+
         if (last == null) {
             first = newNode;
             last = newNode;
         } else {
-            newNode.previous = last;
-            last.next = newNode;
+            newNode.setPrevious(last);
+            last.setNext(newNode);
             last = newNode;
         }
     }
 
     public void remove(T data) {
         Node<T> current = first;
-        while (current != first) {
-            if (current.data.equals(data)) {
-                if (current.previous != null) {
-                    current.previous.next = current.next;
+        while (current != null) {
+            if (current.getData().equals(data)) {
+                if (current.getPrevious() != null) {
+                    current.getPrevious().setNext(current.getNext());
                 } else {
-                    first = current.next;
+                    first = current.getNext();
                 }
-                if (current.next != null) {
-                    current.next.previous = current.previous;
+                if (current.getNext() != null) {
+                    current.getNext().setPrevious(current.getPrevious());
                 } else {
-                    last = current.previous;
+                    last = current.getPrevious();
                 }
                 return;
             }
-            current = current.next;
+            current = current.getNext();
         }
     }
 
@@ -61,8 +119,8 @@ public class MyLinkedList<T> {
         Node<T> current = first;
 
         while (current != null) {
-            list.add(current.data);
-            current = current.next;
+            list.add(current.getData());
+            current = current.getNext();
         }
         return (T[]) list.toArray();
     }
@@ -70,10 +128,10 @@ public class MyLinkedList<T> {
     public T next(T data) {
         Node<T> current = first;
         while (current != null) {
-            if (current.data.equals(data)) {
-                return current.next != null ? current.next.data : null;
+            if (current.getData().equals(data)) {
+                return current.getNext() != null ? current.getNext().getData() : null;
             }
-            current = current.next;
+            current = current.getNext();
         }
         return null;
     }
@@ -81,11 +139,24 @@ public class MyLinkedList<T> {
     public T previous(T data) {
         Node<T> current = first;
         while (current != null) {
-            if (current.data.equals(data)) {
-                return current.previous != null ? current.previous.data : null;
+            if (current.getData().equals(data)) {
+                return current.getPrevious() != null ? current.getPrevious().getData() : null;
             }
-            current = current.next;
+            current = current.getNext();
         }
         return null;
+    }
+
+    private interface Node<T> {
+        T getData();
+
+        Node<T> getNext();
+
+        void setNext(Node<T> next);
+
+        Node<T> getPrevious();
+
+        void setPrevious(Node<T> previous);
+
     }
 }
