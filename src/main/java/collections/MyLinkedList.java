@@ -7,10 +7,12 @@ import java.util.Optional;
 public class MyLinkedList<T> {
     private Node<T> first;
     private Node<T> last;
+    private int size;
 
     public MyLinkedList() {
         this.first = null;
         this.last = null;
+        this.size = 0;
     }
 
     public void addFirst(T data) {
@@ -24,6 +26,7 @@ public class MyLinkedList<T> {
             first.previous = newNode;
             first = newNode;
         }
+        size++;
     }
 
     public void addLast(T data) {
@@ -37,6 +40,7 @@ public class MyLinkedList<T> {
             last.next = newNode;
             last = newNode;
         }
+        size++;
     }
 
     public void remove(T data) {
@@ -53,6 +57,7 @@ public class MyLinkedList<T> {
                 } else {
                     last = current.previous;
                 }
+                size--;
                 return;
             }
             current = current.next;
@@ -90,6 +95,89 @@ public class MyLinkedList<T> {
             current = current.next;
         }
         return Optional.empty();
+    }
+
+    public T getFirst() {
+        if(first != null) {
+            return first.data;
+        }
+        return null;
+    }
+
+    public T getLast() {
+        if (last != null) {
+            return last.data;
+        }
+        return null;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        Node<T> current = first;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    public void removeFirst() {
+        if (first != null) {
+            if (first.next != null) {
+                first = first.next;
+                first.previous = null;
+            }else  {
+                first = null;
+                last = null;
+            }
+            size--;
+        }
+    }
+
+    public void removeLast() {
+        if (last != null) {
+            if (last.previous != null) {
+                last = last.previous;
+                last.next = null;
+            }else {
+                first = null;
+                last = null;
+            }
+            size--;
+        }
+    }
+
+    public void remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        Node<T> current = first;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        if (current.previous != null) {
+            current.previous.next = current.next;
+        }else {
+            first = current.next;
+        }
+
+        if (current.next != null) {
+            current.next.previous = current.previous;
+        }else {
+            last = current.previous;
+        }
+
+        size--;
+    }
+
+    public void clear() {
+        first = null;
+        last = null;
+        size = 0;
     }
 
     static class Node<T> {
